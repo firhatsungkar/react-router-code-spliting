@@ -4,6 +4,7 @@ import {
   Link,
   Switch,
   Route,
+  NavLink,
 } from 'react-router-dom';
 import Topic from './Topic';
 
@@ -15,10 +16,10 @@ function Topics() {
       <h2>Topics</h2>
       <ul>
         <li>
-          <Link to={`${match.url}/components`}>Components</Link>
+          <NavLink className="App-link" activeClassName="App-link--visited" to={`${match.url}/components`}>Components</NavLink>
         </li>
         <li>
-          <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+          <NavLink className="App-link" activeClassName="App-link--visited" to={`${match.url}/props-v-state`}>Props v. State</NavLink>
         </li>
       </ul>
       <Switch>
