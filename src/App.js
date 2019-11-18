@@ -7,13 +7,10 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import Home from './views/Home'
-import About from './views/About'
-import Users from './views/Users'
+import AsyncComponent from './components/AsyncComponent'
 
 // import logo from './logo.svg';
 import './App.css';
-import Topics from './views/Topics';
 
 const RedirectWithStatus = ({ from, to, status}) => (
   <Route
@@ -41,6 +38,12 @@ const NotFound = () => (
   </Status>
 )
 
+const AsyncHome = AsyncComponent(() => import("./views/Home"))
+const AsyncAbout = AsyncComponent(() => import("./views/About"))
+const AsyncUsers = AsyncComponent(() => import("./views/Users"))
+const AsyncTopics = AsyncComponent(() => import("./views/Topics"))
+
+
 function App() {
   return (
     <Router>
@@ -63,19 +66,11 @@ function App() {
             </ul>
           </nav>
           <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/users">
-              <Users/>
-            </Route>
-            <Route path="/topics">
-              <Topics/>
-            </Route>
+            <Route path="/about" component={AsyncAbout}/>
+            <Route path="/users" component={AsyncUsers}/>
+            <Route path="/topics" component={AsyncTopics}/>
+            <Route path="/" exact component={AsyncHome}/>
             <RedirectWithStatus status={301} from="/profile" to="/users"/>
-            <Route path="/" exact>
-              <Home/>
-            </Route>
             <Route component={NotFound}/>
           </Switch>
         </header>
