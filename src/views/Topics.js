@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import {
   useRouteMatch,
   // Link,
@@ -6,7 +6,8 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import Topic from './Topic';
+
+const Topic = lazy(() => import('./Topic'))
 
 function Topics() {
   let match = useRouteMatch()
@@ -24,7 +25,9 @@ function Topics() {
       </ul>
       <Switch>
         <Route path={`${match.path}/:topicId`}>
-          <Topic />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Topic />
+          </Suspense>
         </Route>
         <Route path={match.path}>
           <h3>Please select a topic.</h3>
