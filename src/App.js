@@ -12,6 +12,7 @@ import Users from './views/Users'
 
 // import logo from './logo.svg';
 import './App.css';
+import Topics from './views/Topics';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
                 <Link className="App-link" to="/about">About</Link>
               </li>
               <li>
-                <Link className="App-link" to="/users">Users</Link>
+                <Link className="App-link" to="/topics">Topics</Link>
               </li>
             </ul>
           </nav>
@@ -35,8 +36,8 @@ function App() {
             <Route path="/about">
               <About />
             </Route>
-            <Route path="/users">
-              <Users/>
+            <Route path="/topics">
+              <Topics/>
             </Route>
             <Route path="/">
               <Home/>
